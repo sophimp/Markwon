@@ -1,0 +1,29 @@
+apply plugin: 'maven-publish'
+
+afterEvaluate {
+    publishing {
+        publications {
+
+            print("\n----->groupId:$lib_groupId")
+            print("\n----->version:$lib_version")
+            print("\n----->artifactId:$lib_artifact")
+            maven(MavenPublication) {
+                from components.getByName("release")
+                groupId lib_groupId
+                artifactId lib_artifact
+                version lib_version
+            }
+        }
+        repositories {
+            maven {
+                name = "nexus"
+                allowInsecureProtocol = true
+                url "http://mvn.shiguangxu.com/repository/android"
+                credentials {
+                    username = ''
+                    password = ''
+                }
+            }
+        }
+    }
+}

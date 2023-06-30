@@ -398,6 +398,7 @@ ${result.throwable.stackTraceString()}
                 when (search) {
                     is SampleSearch.Artifact -> putString(ARG_ARTIFACT, search.artifact.name)
                     is SampleSearch.Tag -> putString(ARG_TAG, search.tag)
+                    else -> {}
                 }
 
                 val query = search.text

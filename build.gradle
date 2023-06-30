@@ -1,11 +1,15 @@
 buildscript {
-    ext.kotlin_version = '1.4.10'
+    ext.kotlin_version = '1.7.10'
     repositories {
         google()
         jcenter()
+        maven{
+            allowInsecureProtocol = true
+            url 'http://mvn.shiguangxu.com/repository/android/'}
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.2'
+        classpath 'com.android.tools.build:gradle:7.2.0'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.28.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
@@ -16,6 +20,10 @@ allprojects {
         if (project.hasProperty('LOCAL_MAVEN_URL')) {
             maven { url LOCAL_MAVEN_URL }
         }
+        maven{
+            allowInsecureProtocol = true
+            url 'http://mvn.shiguangxu.com/repository/android/'}
+
         google()
         jcenter()
 //        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
@@ -34,7 +42,7 @@ task clean(type: Delete) {
 }
 
 wrapper {
-    gradleVersion '6.1.1'
+    gradleVersion '7.5.1'
     distributionType 'all'
 }
 
@@ -49,10 +57,10 @@ if (hasProperty('local')) {
 ext {
 
     config = [
-            'build-tools'    : '29.0.3',
-            'compile-sdk'    : 29,
-            'target-sdk'     : 29,
-            'min-sdk'        : 16,
+            'build-tools'    : '30.0.3',
+            'compile-sdk'    : 30,
+            'target-sdk'     : 30,
+            'min-sdk'        : 21,
             'push-aar-gradle': 'https://raw.githubusercontent.com/noties/gradle-mvn-push/master/gradle-mvn-push-aar.gradle'
     ]
 
@@ -81,7 +89,8 @@ ext {
             'android-gif-impl'        : 'pl.droidsonroids.gif:android-gif-drawable:1.2.20',
             'jlatexmath-android'      : 'ru.noties:jlatexmath-android:0.2.0',
             'okhttp'                  : 'com.squareup.okhttp3:okhttp:3.9.0',
-            'prism4j'                 : 'io.noties:prism4j:2.0.0',
+            'prism4j'                 : 'io.noties.cus:prism4j:2.0.0',
+//            'prism4j'                 : 'io.noties:prism4j:2.0.0',
             'debug'                   : 'io.noties:debug:5.1.0',
             'adapt'                   : 'io.noties:adapt:2.2.0',
             'dagger'                  : "com.google.dagger:dagger:$daggerVersion",
@@ -95,7 +104,9 @@ ext {
     ]
 
     deps['annotationProcessor'] = [
-            'prism4j-bundler': 'io.noties:prism4j-bundler:2.0.0',
+            'prism4j-bundler': 'io.noties.cus:prism4j-bundler:2.0.0',
+//            'prism4j-languages': 'io.noties.cus:prism4j-languages:2.0.0',
+//            'prism4j-bundler': 'io.noties:prism4j-bundler:2.0.0',
             'dagger-compiler': "com.google.dagger:dagger-compiler:$daggerVersion"
     ]
 

@@ -1,5 +1,10 @@
 apply plugin: 'com.android.library'
 
+lib_groupId = "io.noties.cus"
+lib_artifact = "syntax-highlight"
+lib_version = "4.6.4"
+apply from:rootProject.file("publish.gradle")
+
 android {
 
     compileSdkVersion config['compile-sdk']
@@ -15,7 +20,8 @@ android {
 
 dependencies {
 
-    api project(':markwon-core')
+    implementation "io.noties.markwon:core:4.6.2"
+//    api project(':markwon-core')
 
     deps.with {
         api it['prism4j']
